@@ -1,35 +1,43 @@
-🧠 Arquitectura y Flujo de Datos
-El núcleo del sistema opera bajo un flujo de ingeniería de datos optimizado:
+1. Preparar la Carpeta
+Asegúrate de que los 4 archivos de tu proyecto estén juntos dentro de la misma carpeta (sin subcarpetas raras). La carpeta debe verse así:
 
-Ingesta: Se procesan perfiles genéticos y manuales PDF oficiales.
+Motor_IA.py (Tu código principal)
 
-Chunking: Los datos se segmentan con RecursiveCharacterTextSplitter para preservar el contexto médico.
+Requerimientos.txt (La lista de librerías)
 
-Vectorización: Los fragmentos se convierten en vectores almacenados en una base de datos local.
+datos_razas.json (La base de datos genética)
 
-Recuperación: Se realiza una búsqueda de similitud semántica ante cada consulta del usuario.
+WSAVA-Nutrition-Assessment-Guidelines-2011-JSAP.pdf (El manual médico)
 
-Inferencia: El LLM procesa el contexto recuperado y genera un informe empático, estructurado y clínicamente válido.
+2. Abrir la Terminal e Instalar las Librerías
+El sistema necesita instalar las herramientas de Inteligencia Artificial (LangChain, ChromaDB, etc.).
 
-🏁 Pasos para Ejecutar el Sistema
-1. Configuración del Entorno
-Se recomienda el uso de un entorno virtual para aislar las dependencias:
+Abre la terminal de Windows (CMD) o la terminal de Visual Studio Code.
 
-Bash
-python -m venv venv
-venv\Scripts\activate
-2. Instalación de Librerías
-Ejecuta el siguiente comando para instalar el motor del sistema:
+Navega hasta la carpeta de tu proyecto.
+
+Escribe este comando y presiona Enter:
 
 Bash
-python -m pip install langchain langchain-openai langchain-community pypdf chromadb jq streamlit
-3. Configuración de Credenciales
-En el archivo app.py, configura tu token de acceso de GitHub Models:
+python -m pip install -r Requerimientos.txt
+(Esto leerá el archivo de texto y descargará todas las librerías necesarias automáticamente. Puede tardar un par de minutos).
 
-Python
-os.environ["OPENAI_API_KEY"] = "TU_GITHUB_TOKEN_AQUÍ"
-4. Lanzamiento
-Inicia el servidor web local:
+3. Poner la "Llave" de GitHub (El Token)
+Para que el cerebro de la IA funcione, necesita permiso para conectarse a los servidores de GitHub Models.
+
+Abre el archivo Motor_IA.py con cualquier editor de texto o código.
+
+Busca la línea 14, que se ve así:
+os.environ["OPENAI_API_KEY"] = "TU_TOKEN_DE_GITHUB_AQUI"
+
+Borra el texto "TU_TOKEN_DE_GITHUB_AQUI" y pega ahí tu token real (el que empieza con github_pat_...).
+
+Guarda el archivo (Ctrl + S).
+
+4. ¡Encender el Sistema!
+Ya está todo configurado. Ahora solo queda darle arranque al motor.
+
+En la misma terminal donde estabas, escribe este comando:
 
 Bash
-python -m streamlit run app.py
+python Motor_IA.py
