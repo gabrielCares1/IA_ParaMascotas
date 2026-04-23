@@ -1,0 +1,35 @@
+🧠 Arquitectura y Flujo de Datos
+El núcleo del sistema opera bajo un flujo de ingeniería de datos optimizado:
+
+Ingesta: Se procesan perfiles genéticos y manuales PDF oficiales.
+
+Chunking: Los datos se segmentan con RecursiveCharacterTextSplitter para preservar el contexto médico.
+
+Vectorización: Los fragmentos se convierten en vectores almacenados en una base de datos local.
+
+Recuperación: Se realiza una búsqueda de similitud semántica ante cada consulta del usuario.
+
+Inferencia: El LLM procesa el contexto recuperado y genera un informe empático, estructurado y clínicamente válido.
+
+🏁 Pasos para Ejecutar el Sistema
+1. Configuración del Entorno
+Se recomienda el uso de un entorno virtual para aislar las dependencias:
+
+Bash
+python -m venv venv
+venv\Scripts\activate
+2. Instalación de Librerías
+Ejecuta el siguiente comando para instalar el motor del sistema:
+
+Bash
+python -m pip install langchain langchain-openai langchain-community pypdf chromadb jq streamlit
+3. Configuración de Credenciales
+En el archivo app.py, configura tu token de acceso de GitHub Models:
+
+Python
+os.environ["OPENAI_API_KEY"] = "TU_GITHUB_TOKEN_AQUÍ"
+4. Lanzamiento
+Inicia el servidor web local:
+
+Bash
+python -m streamlit run app.py
